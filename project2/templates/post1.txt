@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 style="color: red;"><b>Django網站</b></h1>
+    <form action="/post1/" method="post">
+        {% csrf_token %} <!--這行一定要加，就是暫時停掉跨站請求偽造-->
+        <p>帳號：<input type="text" name="username" id="username"></p><!--這邊輸入的名稱是以name為主，不是id-->
+        <p>密碼：<input type="password" name="passwd" id="passwd"></p><!--這邊輸入的名稱是以name為主，不是id-->
+        <p>
+            <button type="submit">確定</button>
+            <button type="reset">清除</button>
+        </p>
+    </form>
+</body>
+</html>

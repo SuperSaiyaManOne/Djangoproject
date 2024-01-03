@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}
+<title>管理系統-新增資料(POST)</title>
+<style>
+    body{
+        background-image: url(/static/bg_animal.png);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    h1{
+        margin: 30px;
+        text-align: center;
+    }
+    table, th, td{
+        padding: 10px;
+        border: 1.5px solid;
+        border-collapse: collapse; /*表格加上線條*/
+    }
+    table{
+        background-color: rgba(255, 255, 255, 0.9);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    th{
+        background-color: #EEF3AE;
+        font-size: 1.2em;
+    }
+</style>
+
+{% endblock title %}
+
+{% block  content %}
+<body>
+    <div>
+        <h1 class="title">學生資料管理系統-新增資料(POST)</h1>
+    </div>
+        
+    <div>
+        <form action="/post1/" method="POST">
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>*姓名</th>
+                    <td><input type="text" id="cName" name="cName" required placeholder="請輸入姓名"></td>
+                </tr>
+                <tr>
+                    <th>*性別</th>
+                    <td>
+                        <input type="radio" id="cSex" name="cSex" value="M" checked>男
+                        <input type="radio" id="cSex" name="cSex" value="F">女
+                    </td>
+                </tr>
+                <tr>
+                    <th>*生日</th><td><input type="date" id="cBirthday" name="cBirthday" required></td>
+                </tr>
+                <tr>
+                    <th>*信箱</th><td><input type="mail" id="cEmail" name="cEmail" required placeholder="請輸入mail"></td>
+                </tr>
+                <tr>
+                    <th>電話</th><td><input type="text" id="cPhone" name="cPhone"></td>
+                </tr>
+                <tr>
+                    <th>地址</th><td><input type="text" id="cAddr" name="cAddr"></td>
+                </tr>
+                <tr>
+                    <th colspan="2" style="text-align:center;">
+                        <input type="submit" name="button" id="button" value="儲存" style="font-size: 15pt; margin: 5px;">
+                        <input type="reset" name="button2" id="button2" value="清除" style="font-size: 15pt; margin: 5px;">
+                    </th>
+                </tr>
+            </table>
+        </form>
+    </div>
+
+    <a href="/index/" style="text-align: center;">
+        <h3>回首頁</h3>
+    </a>
+
+</body>
+{% endblock  %}

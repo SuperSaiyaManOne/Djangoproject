@@ -1,0 +1,90 @@
+{% extends "base.html" %}
+{% block title %}
+<title>學生資料管理系統-修改資料</title>
+<style>
+    body{
+        background-image: url(/static/bg_animal.png);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    h1{
+        margin: 30px;
+        text-align: center;
+    }
+    table, th, td{
+        padding: 10px;
+        border: 1.5px solid;
+        border-collapse: collapse; /*表格加上線條*/
+    }
+    table{
+        background-color: rgba(255, 255, 255, 0.9);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    th{
+        background-color: #FFF385;
+        font-size: 1.2em;
+    }
+</style>
+
+{% endblock title %}
+
+{% block  content %}
+<body>
+    <div>
+        <h1 class="title">學生資料管理系統-修改資料(POST)</h1>
+    </div>
+        
+    <div>
+        {% comment %}下面這行是重要的技巧{% endcomment %}
+        <form action="/edit2/{{ dict_data.id }}/" method="POST"> 
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>*姓名</th><td><input type="text" id="cName" name="cName" required placeholder="請輸入姓名" value="{{ dict_data.cName }}"></td>
+                </tr>
+                <tr>
+                    <th>*性別</th>
+                    <td>
+                        <input type="radio" id="cSex" name="cSex" value="M" {% if dict_data.cSex == "M" %}checked{% endif %}>男
+                        <input type="radio" id="cSex" name="cSex" value="F" {% if dict_data.cSex == "F" %}checked{% endif %}>女
+                        {% comment %} <!--以下的if else endif不夠精簡-->
+                        {% if dict_data.cSex == "M" %}
+                        <input type="radio" id="cSex" name="cSex" value="M" checked>男
+                        <input type="radio" id="cSex" name="cSex" value="F">女
+                        {% else %}
+                        <input type="radio" id="cSex" name="cSex" value="M" checked>男
+                        <input type="radio" id="cSex" name="cSex" value="F">女
+                        {% endif %} {% endcomment %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>*生日</th><td><input type="date" id="cBirthday" name="cBirthday" value="{{ dict_data.cBirthday|date:'Y-m-d' }}" required></td>
+                </tr>
+                <tr>
+                    <th>*信箱</th><td><input type="mail" id="cEmail" name="cEmail" required placeholder="請輸入mail" value="{{ dict_data.cEmail }}"></td>
+                </tr>
+                <tr>
+                    <th>電話</th><td><input type="text" id="cPhone" name="cPhone" value="{{ dict_data.cPhone }}"></td>
+                </tr>
+                <tr>
+                    <th>地址</th><td><input type="text" id="cAddr" name="cAddr" value="{{ dict_data.cAddr }}"></td>
+                </tr>
+                <tr>
+                    <th colspan="2" style="text-align:center;">
+                        <input type="submit" name="button" id="button" value="修改" style="font-size: 15pt; margin: 5px;">
+                        <input type="reset" name="button2" id="button2" value="清除" style="font-size: 15pt; margin: 5px;">
+                    </th>
+    
+                </tr>
+            </table>
+    
+        </form>
+    </div>
+
+    <a href="/index/" style="text-align: center;">
+        <h3>回首頁</h3>
+    </a>
+
+</body>
+{% endblock  %}

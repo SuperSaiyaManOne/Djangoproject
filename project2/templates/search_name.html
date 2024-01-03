@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>搜尋你要的資料</title>
+    <!-- 自定義 CSS 樣式 -->
+    <style>
+        body {
+            background-image: url(/static/bg_dog.png);
+            background-repeat: repeat;
+            display: flex;
+            align-items: center; /* 將內容垂直置中 */
+            justify-content: center; /* 將內容水平置中 */
+            height: 100vh; /* 使整個頁面占滿視窗高度 */
+            margin: 0;
+        }
+
+        h1 {
+            color: blue;
+            margin: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto; /* 水平置中 */
+        }
+
+        .card {
+            background-image: url(/static/cardbg.jpg);
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+            text-align: center; /* 讓內容水平置中 */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* 將表單內容垂直置中 */
+        }
+        /* 新增一個樣式，將 label 和 input 包裝在同一行 */
+        .form-group {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+        label, input {
+            margin: 10px;
+        }
+        button {
+            width: 150px; /* 調整搜尋按鈕寬度 */
+            height: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>輸入要搜尋的學生資料(中英皆可)</h1>
+            <!-- 使用表單進行搜尋 -->
+            <form action="/list/" method="GET"> <!--django中處理搜尋請求的路徑。你需在urls.py中設置，以處理搜尋請求並返回相應的結果-->
+                <!-- 將 label 和 input 包裝在同一行的 div 元素中 -->
+                <div class="form-group">
+                    <label for="fname">姓&nbsp;&nbsp;&nbsp;名：</label> <!-- 輸入框的標籤 -->
+                    <input type="text" name="cName" id="cName"> <!-- 輸入框 -->
+                </div>    
+                <p><button type="submit">搜尋</button></p> <!-- 提交按鈕 --> 
+            </form>
+        </div>
+    </div>
+</body>
+</html>

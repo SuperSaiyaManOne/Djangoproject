@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static './style.css' %}"> <!--"".s/style.css"是檔名的設定-->
+</head>
+<body>
+    <div style="text-align: center;">
+        <img src="{% static './p1.jpg' %}" alt="ball" width="100px">
+    </div>
+    <h1>歡迎光臨:{{username}}</h1>
+    <h2>現在時間:{{now}}</h2>
+</body>
+</html>

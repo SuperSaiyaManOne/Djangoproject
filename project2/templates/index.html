@@ -1,0 +1,84 @@
+{% extends "base.html" %}
+
+{% block title %} <!--設定chrom頁籤名稱-->
+<title>會員管理系統(POST)</title>
+<style>
+    body{
+        background-image: url(/static/bg_animal.png);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    h1, h2{
+        text-align: center;
+    }
+    table, th, td{
+        padding: 10px;
+        border: 1.5px solid;
+        border-collapse: collapse; /*表格加上線條*/
+    }
+    table{
+        background-color: rgba(255, 255, 255, 0.9);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .head_content{
+        margin-bottom: 15px;
+        /* background-color: aqua; */
+        /* background-image: url(/static/bg_snowflake.jpg);
+        background-size: 100% repeat; */
+        /* background-repeat: no-repeat; */
+    }
+    th{
+        font-size: 1.2em;
+    }
+    .else{
+        margin-left: 3px;
+        margin-right: 3px;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<body>
+    <div class="head_content">
+        <h1 class="title">會員資料管理系統(POST)</h1>
+        <h2>目前的資料筆數：{{ data_count }}，<a href="/post1/">新增客人資料</a></h2>
+        <div style="text-align: center;"> <!--這邊開始加入搜尋功能-->
+            <form action="/index/" method="get">
+                <label for="site_search">搜尋關鍵字</label>
+                <input type="search" id="site_search" name="site_search">
+                <button type="submit" style="margin-left: 5px;">搜尋</button>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        {% if status %}
+            <table>
+                <tr style="background-color: #EEF3AE;">
+                    <th>學號</th><th>姓名</th><th>性別</th><th>生日</th><th>信箱</th><th>電話</th><th>地址</th><th>編修</th>
+                </tr>
+                {% for data in resultList %}
+                <tr>
+                    <td style="text-align: center;">{{ data.id }}</td>
+                    <td style="text-align: center;">{{ data.cName }}</td>
+                    <td style="text-align: center;">{% if data.cSex == "M" %}男{%else%}女{% endif %}</td>
+                    <td style="text-align: center;">{{ data.cBirthday|date:'Y-m-d' }}</td> <!--直線前後不要有空格可能會有錯誤-->
+                    <td>{{ data.cEmail }}</td>
+                    <td>{{ data.cPhone }}</td>
+                    <td>{{ data.cAddr }}</td>
+                    <td> <!--三個按鈕超連結的關鍵在這裡-->
+                        <a href="/edit1/{{ data.id }}/load/" class="else">編輯1(GET)</a>
+                        <a href="/edit2/{{ data.id }}/" class="else">編輯2(POST)</a>
+                        <a href="/delete/{{ data.id }}/" class="else">刪除(POST)</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <h1>無資料</h1>
+        {% endif %}
+    </div>
+</body>
+
+{% endblock %}

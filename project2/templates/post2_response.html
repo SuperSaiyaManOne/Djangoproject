@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <h3>result:</h3>
+        {% comment %} <ul>  django的註解練習
+            <li>{{ items.0}}</li>
+            <li>{{ items.1}}</li>
+            <li>{{ items.2}}</li>
+            <li>{{ items.3}}</li>
+        </ul>{% endcomment %}
+
+         <ul> <!--這邊可顯示勾選的內容，並放在第一跟第二順位-->
+            <li>{{ items.0}}</li>
+            <li>{{ items.1}}</li>
+            <li>{{ items.2}}</li>
+            <li>{{ items.3}}</li>
+        </ul>
+
+        <ul> <!--這邊可顯示勾選的內容-->
+            {% for data in items %}
+            <li>{{ data }}</li>
+            {% endfor %}
+        </ul>
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body><!-- for → empty → endfor -->
+    {% for person in persons %}
+        <h2>第{{ forloop.counter }}位員工</h2>
+        <ul>
+            <li>{{person.name}}</li>
+            <li>{{person.phone}}</li>
+            <li>{{person.age}}</li>
+        </ul>
+    {%empty%}
+        <p>沒有任何資料</p>
+    {%endfor%} <!--這行結尾一開始就先打好-->
+</body>
+</html>

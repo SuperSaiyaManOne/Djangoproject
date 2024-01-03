@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>學號：{{ student.id }}</h1>
+    <h1>姓名：{{ student.name }}</h1>
+
+    {% if student.sex == "M" %}
+    <h1>性別：男生</h1>
+    {% else %}
+    <h1>性別：女生</h1>
+    {% endif %}
+
+    <h1>水果1：{{fruits.1}}</h1>
+    <h1>水果2：{{fruits.2}}</h1>
+</body>
+</html>

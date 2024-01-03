@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% block title %}
+<title>學生資料管理系統-刪除資料</title>
+<style>
+    body{
+        background-image: url(/static/bg_animal.png);
+        background-size: 100% auto;
+        background-repeat: no-repeat;
+    }
+    h1{
+        margin: 30px;
+        text-align: center;
+    }
+    table, th, td{
+        padding: 10px;
+        border: 1.5px solid;
+        border-collapse: collapse; /*表格加上線條*/
+    }
+    table{
+        background-color: rgba(255, 255, 255, 0.9);
+        margin-left: auto;
+        margin-right: auto;
+    }
+    th{
+        background-color: #FFF385;
+        font-size: 1.2em;
+    }
+</style>
+
+<script>
+    function doublecheck(){
+        return confirm("\n您確定要刪除這筆資料嗎?\n刪除後無法恢復!")
+    }
+</script>
+
+{% endblock title %}
+
+{% block  content %}
+<body>
+    <div>
+        <h1 class="title">學生資料管理系統-刪除資料(POST)</h1>
+    </div>
+        
+    <div>
+        {% comment %}下面這行是重要的技巧{% endcomment %}
+        <form action="/delete/{{ dict_data.id }}/" method="POST"> 
+            {% csrf_token %}
+            <table>
+                <tr>
+                    <th>*姓名</th><td>{{ dict_data.cName }}</td>
+                </tr>
+                <tr>
+                    <th>*性別</th>
+                    <td>
+                        {% if dict_data.cSex == "M" %}男{% endif %}
+                        {% if dict_data.cSex == "F" %}女{% endif %}
+                        {% comment %} <!--以下的if else endif不夠精簡-->
+                        {% if dict_data.cSex == "M" %}
+                        <input type="radio" id="cSex" name="cSex" value="M" checked>男
+                        <input type="radio" id="cSex" name="cSex" value="F">女
+                        {% else %}
+                        <input type="radio" id="cSex" name="cSex" value="M" checked>男
+                        <input type="radio" id="cSex" name="cSex" value="F">女
+                        {% endif %} {% endcomment %}
+                    </td>
+                </tr>
+                <tr>
+                    <th>*生日</th><td>{{ dict_data.cBirthday|date:'Y-m-d' }}</td>
+                </tr>
+                <tr>
+                    <th>*信箱</th><td>{{ dict_data.cEmail }}</td>
+                </tr>
+                <tr>
+                    <th>電話</th><td>{{ dict_data.cPhone }}</td>
+                </tr>
+                <tr>
+                    <th>地址</th><td>{{ dict_data.cAddr }}</td>
+                </tr>
+                <tr>
+                    <th colspan="2" style="text-align:center;">
+                        <!-- <input type="submit" name="button" id="button" value="刪除"> -->
+                        <button onclick="return doublecheck();" style="font-size: 15pt; margin: 5px;">刪除</button>
+                    </th>
+    
+                </tr>
+            </table>
+    
+        </form>
+    </div>
+
+    <a href="/index/" style="text-align: center;">
+        <h3>回首頁</h3>
+    </a>
+
+</body>
+{% endblock  %}

@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- 引入 Bootstrap CDN -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <title>顯示學生資料表的資料</title>
+    <!-- 自定義 CSS 樣式 -->
+    <style>
+        body{
+            background-image: url(/static/flower.jpg);
+            background-repeat: repeat;
+        }
+        h1 {
+            color: red;
+            text-align: center;
+        }
+        h2 {
+            color: blue;
+            margin-top: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .card {
+            background-image: url(/static/cardbg.jpg);
+            border: 1px solid black;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        {% comment %} 顯示可能存在的錯誤訊息 {% endcomment %}
+        <h1>{{ errormessage }}</h1>
+        {% comment %}↓↓ Django 樣板語言中的 for 迴圈，用於遍歷 resultList 中的每一個學生資料 ↓↓{% endcomment %}
+        {% for data in resultList %}
+        <div class="card">
+            <h2>顯示學生資料表的資料</h2>
+            編號：{{ data.id }}<br>
+            姓名：{{ data.cName }}<br>
+            性別：{{ data.cSex }}<br>
+            生日：{{ data.cBirthday }}<br>
+            郵件：{{ data.cEmail }}<br>
+            電話：{{ data.cPhone }}<br>
+            地址：{{ data.cAddr }}<br>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
+
+<!--原本的程式碼-->
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>{{ errormessage }}</h1>
+    {% for data in resultList %}
+    <h2>顯示student資料表的資料</h2>
+    編號：{{ data.id }}<br>
+    姓名：{{ data.cName }}<br>
+    性別：{{ data.cSex }}<br>
+    生日：{{ data.cBirthday }}<br>
+    郵件：{{ data.cEmail }}<br>
+    電話：{{ data.cPhone }}<br>
+    地址：{{ data.cAddr }}<br>
+    {% endfor %}
+</body>
+</html> -->
