@@ -17,21 +17,6 @@ def hello2(request,username):
 
 from django.db import connections ##從django.db模組中導入connections物件，用於管理資料庫連接
 def list(request): #定義一個函數list，接收一個參數request，表示網頁請求
-    # 以下是老師自己修正過的：
-    # if 'cName' in request.GET:
-    #     cName = request.GET["cName"]
-    #     # print(cName)
-    #     # print("test1...")
-    #     sql = "select * from myapp_student where cName='%s'" %(cName)
-    #     # print(sql)
-    # else:
-    #     sql = "select * from myapp_student" #沒有篩選的話就顯示所有的資料
-    #     # print("test2...")
-
-    # cursor = connections["default"].cursor() #連接資料庫
-    # cursor.execute(sql,[]) #執行sql語法
-
-    # 原始寫法：(網路的或書本的) ↓
     if 'cName' in request.GET: #如果請求中有cName這個參數，表示要查詢特定的學生姓名
         cName = request.GET["cName"] #從請求中獲取cName的值，賦給變數cName
         # print(cName)
@@ -46,7 +31,6 @@ def list(request): #定義一個函數list，接收一個參數request，表示�
         sql = "select * from myapp_student" #定義一個sql語句，用於從myapp_student這個資料表中查詢所有的欄位
         # print("test2...")
         val = [] #定義一個空列表，賦給變數val，表示沒有參數要傳遞給sql語句
-    # 原始寫法：(網路的或書本的) ↑
 
     cursor = connections["default"].cursor()
     #從connections物件中獲取名為"default"的資料庫連接，並創建一個游標物件，賦給變數cursor，用於執行sql語句和獲取結果
@@ -365,17 +349,6 @@ def getAllItems(request):
     #轉換格式 #固定寫法 #↑↑↑↑↑↑↑
     # return HttpResponse("test1")
     return JsonResponse(resultList,safe=False, json_dumps_params={'ensure_ascii':False})
-    '''
-    用於返回一個 JSON 格式的響應：
-    ● JsonResponse 是一個 Django 提供的方便方法，用於返回一個 JSON 格式的 HTTP 響應。
-    ● result 是在之前從資料庫中獲取的資料，它是一個 Python 列表或字典形式的資料集。
-    ● safe=False 的設置是告訴 Django，傳遞的資料不一定是一個安全的 Python 基本數據類型，
-    例如字典或列表，而可能是一個自定義的物件，因此需要額外的處理。
-    ● json_dumps_params={'ensure_ascii':False} 的作用是讓 JSON 序列化的過程中保留非 ASCII 字符。
-    
-    這樣做是為了處理非 ASCII 字符，以確保能正確顯示像繁體中文這樣的非 ASCII 字符。
-    總的來說，這段程式碼的作用是將從資料庫獲取的資料以 JSON 格式返回給前端，並確保其中的非 ASCII 字符能夠正確顯示。
-    '''
 
 def getItem(request, id=None):
     print(id)
