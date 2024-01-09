@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% load static %}
+
+<title>檢視店家</title>
+
+<style>
+    body{
+        background-image: url(/static/images/food_map.jpg);
+    }
+    button{
+        border-radius: 15px;
+    }
+    .card-content > .card-pane {
+        display: none;
+      }
+      .card-content > .active {
+        display: block;
+      }
+    #container {
+        width: 100%;
+    }
+
+    #cardData {
+        width: 30%;
+        float: left;
+    }
+
+    #myTabContent,#imgData {
+        width: 70%;
+        float: left;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+
+
+<div class="container" style="padding-right: 5px;>
+    <div class="row"> <!--创建一个具有列类的 div 元素，占据总宽度的5/12，即占据较小的部分。-->
+        {% if user.is_authenticated %} <!--这是一个Django模板标签，用于检查用户是否已通过身份验证。-->
+        <h5 style="display: flex; align-items: center; justify-content: right; height: auto;" class="text-white">
+            <a href="/logout/">{{ user.username }}</a>歡迎光臨
+        </h5> <!--如果用户已通过身份验证，则显示带有链接的欢迎信息。-->
+        {% else %} <!--如果用户未通过身份验证，则执行下一个代码块。-->
+        <h5 style="display: flex; align-items: center; justify-content: right; height: auto;" class="text-white">您尚未登入喔~<a href="/login/">登入</a></h5> <!--显示提示用户登录的信息，并提供登录链接。-->
+        {% endif %}
+    </div>
+</div>
+
+<div style="display: flex; align-items: center; justify-content: center; height: 100px;">
+    <h1 style="text-align: center;" class="text-white">早點見 - 早餐購物系統</h1>
+</div>
+
+<div class="container" style="padding: 20px; width: 1500px;" > <!--最外面的白色框背景，上外邊距為30px-->
+    <div class="row" style="padding-top: 20px;" >
+        <!--卡片呈現，含店名、圖片 左邊-->
+        <div class="row list-inline">
+            {% for data in resultList %}
+            
+            <div class="col list-inline-item">
+                
+                <div class="card" style="width: 180px;"><!-- 卡片 寬度 -->
+                    <a href="/menu/{{ data.id }}/">
+                        <img class="card" src="/static/images/{{ data.name }}.png" style="width: 180px;" >
+                    </a><!-- 卡片-圖檔-寬度 -->
+                    <div class="card-body" style="text-align: center;"><!-- 卡片-主體 -->
+                        <div class="card-title">
+                            <a href="/menu/{{ data.id }}/" style="font-size: 16px;">{{ data.name }}</a>
+                        </div><!-- 卡片-標題 -->
+                        <div class="card-text pb-3" style="font-size: 12px;"><!-- 卡片-內容  -->
+                            {{ data.phone }}<br>
+                            {{ data.contact }}
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            
+            {% endfor %}
+        </div>
+    </div>
+    <div class="col" align="center" style="padding-top: 20px;">
+        <a href="/front_page_1/"><button type="button" class="btn btn-info">返回首頁</button></a>
+    </div>
+</div>
+{% endblock %}

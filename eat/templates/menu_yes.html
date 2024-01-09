@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>抓取菜單資料庫資料</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<style>
+    h1, h4{
+        text-align: center;
+    }
+    table, th, td{
+        text-align: center;
+        padding: 10px;
+        border: solid 1px;
+        border-collapse: collapse;
+    }
+    table{
+        margin-left: auto;
+        margin-right: auto;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div>
+    <h1 class="title">訂餐系統</h1>
+    <a href="/front_page/"><h4>回首頁</h4></a>
+    <div style="text-align: center;">
+        <form action="/menu2/{{ dict_data.id }}/">
+            {% csrf_token %}
+            {% if status %}
+            <table>
+                {% for data in resultList %}
+                <h1>{{ data.cStore_Name.21 }} 訂購系統 </h1>
+                <tr>
+                    <th>品名</th>
+                    <th>金額</th>
+                    <th>數量</th>
+                </tr>
+                
+                <tr>
+                    <th>{{ data.cProduct_name }}</th>
+                    <th>{{ data.cUnit_price }}</th>
+                    <th><input type="number" name="number" id="number"></th>
+                </tr>
+                {% endfor %}
+
+            </table>
+            <h1>無資料</h1>
+            {% endif %}
+    
+        </form>
+    </div>
+{% endblock %}
+

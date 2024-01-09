@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>好事多代購系統</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<style>
+    body{
+        background-image: url(/static/across_02.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: Cover ;                        {% comment %} 無論如何，都會將畫面居中撐滿 {% endcomment %}
+        background-size: Contain;                       {% comment %} 依照原來的比例，等比的縮放到指定的元素的尺寸中 {% endcomment %}
+        background-size: 100% 99% ;                     {% comment %} 寬度和高度都強制100% 會有變形的情況 {% endcomment %}
+        background-color: rgba(0, 0, 0, .5);            {% comment %} 透明度 0.6 的黑色半透明遮罩 {% endcomment %}
+        background-blend-mode: multiply;                {% comment %} 設置背景混和模式為相乘模式 {% endcomment %}
+    }
+    p{
+        font-size: 100px;
+        text-align: center;
+        color: #62ff00;
+    }
+    h1{
+        font-size: 50px;
+        text-align: center;
+        color: #001eff;
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div>
+            <h1>好事多代購系統</h1>
+        </div>
+        <div>
+            <p>網頁架設中</p>
+        </div>
+        <div style="text-align: center;">
+            
+            <a href="/front_page/"><button type="button" class="btn btn-outline-info">返回首頁</button></a>
+        </div>
+    </div>
+    
+
+</div>    
+
+
+
+    
+    
+    
+{% endblock %}

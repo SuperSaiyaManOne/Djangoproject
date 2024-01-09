@@ -1,0 +1,103 @@
+{% comment %} {% extends "check_base.html" %}
+{% load static %}
+{% block content %}
+  <div id="maindiv">
+    <h1>店家菜单</h1>
+    {% for product in productall %}
+      <div class="block_product pro_photo">
+        <div class="pro_photo">
+          <img src="/static/cart/images/{{ product.pimages }}" alt="產品詳細資料" width="135" height="135" border="0" />
+          <div class="pro_name">{{ product.name }}</div>
+          <div class="pro_price">${{ product.price }}</div>
+          <div class="pro_btn">
+            <form method="post" action="{% url 'add_to_cart' product.id %}">
+              {% csrf_token %}
+              <input type="number" name="quantity" value="1" min="1">
+              <button type="submit">Add to Cart</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+    <h2>购物车</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Subtotal</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for cart_item in cart_items %}
+          <tr>
+            <td>{{ cart_item.product.name }}</td>
+            <td>${{ cart_item.product.price }}</td>
+            <td>
+              <form method="post" action="{% url 'update_cart' cart_item.id %}">
+                {% csrf_token %}
+                <input type="number" name="quantity" value="{{ cart_item.quantity }}" min="1">
+                <button type="submit">Update</button>
+              </form>
+            </td>
+            <td>${{ cart_item.subtotal }}</td>
+            <td><a href="{% url 'remove_from_cart' cart_item.id %}">Remove</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="3">Total:</td>
+          <td>${{ total }}</td>
+          <td></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+{% endblock %} {% endcomment %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{% extends "check_base.html" %}
+{% load static %}
+
+{% block content %}
+  <div id="maindiv">
+    {% if cartnum == 0 %}
+      <div class="message"> 您的購物車是空的！</div>
+    {% endif %}
+
+    {% for product in productall %}
+      <div class="block_product pro_photo">
+        <div class="pro_photo">
+          <a href="/check_detail/{{ product.id }}"><img src="/static/cart/images/{{ product.pimages }}" alt="產品詳細資料" width="135" height="135" border="0" /></a>
+          <div class="pro_name" style="font-size: 18px;"><a href="/check_detail/{{ product.id }}">{{ product.name }}</a></div>
+          <div class="pro_price">{{ product.price }}</div>
+          <div class="pro_btn">
+            <a href="/view_cart/add_to_cart/{{product_id}}/"><img src="{% static "cart/images/icon_cart.png" %}" height="27" border="0" /></a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

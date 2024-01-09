@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>會員資料</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<style>
+    body{
+        background-image: url(/static/across_03.jpg);
+        background-size: Cover ;                        {% comment %} 無論如何，都會將畫面居中撐滿 {% endcomment %}
+        background-size: Contain;                       {% comment %} 依照原來的比例，等比的縮放到指定的元素的尺寸中 {% endcomment %}
+        background-size: 100% auto;                     {% comment %} 寬度和高度都強制100% 會有變形的情況 {% endcomment %}
+        background-color: rgba(0, 0, 0, .4);            {% comment %} 透明度 0.6 的黑色半透明遮罩 {% endcomment %}
+        background-blend-mode: multiply;                {% comment %} 設置背景混和模式為相乘模式 {% endcomment %}
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1 style="text-align: center; color: aqua; padding-top: 20px;">會&nbsp;&nbsp;員&nbsp;&nbsp;資&nbsp;&nbsp;料 </h1>
+    <form action="/member_login/" method="POST">
+        <div class="container" style="padding-top: 30px;">
+            <div class="row">
+                <div class="col-4">
+
+                </div>
+                <div class="col-2">
+                    <ul class="nav nav-pills flex-column" id="mytab">
+                        <li class="nav-item" style="text-align: center; width: 300px; font-size: 32px; padding: 30px;">
+                            <a class="nav-link " href="/disp/">修改會員資料</a>
+                        </li>
+                        <li class="nav-item" style="text-align: center; width: 300px; font-size: 32px; padding: 30px;">
+                            <a class="nav-link " href="/deposit/">儲值</a>
+                        </li>
+                        <li class="nav-item" style="text-align: center; width: 300px; font-size: 32px; padding: 30px;">
+                            <a class="nav-link  " href="/front_page/">回首頁</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-5">
+
+                </div>
+            </div>
+            
+        </div>
+    </form>
+    
+{% endblock %}

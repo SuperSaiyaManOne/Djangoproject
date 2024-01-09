@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>抓取資料庫資料(基本資料)</title>
+{% endblock %}
+
+{% block content %}
+    <h1> {{ errormessage }} </h1>
+    {% for data in resultList %}
+    <h2>顯示 會員 資料表的資料</h2>
+    <p>帳號：{{ data.cAcc }}</p>
+    <p>密碼：{{ data.cPwd }}</p>
+    <p>姓名：{{ data.cName }}</p>
+    <p>性別：{{ data.cSex }}</p>
+    <p>生日：{{ data.cBirthday }}</p>
+    <p>email：{{ data.cEmail }}</p>
+    <p>電話：{{ data.cPhone }}</p>
+    <p>地址：{{ data.cAddr }}</p>
+
+    {% endfor %}
+{% endblock %}

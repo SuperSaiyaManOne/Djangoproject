@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    {% load static %}
+    <title>編輯會員資料</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"><!-- Style-CSS -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}"><!-- font-awesome-icons -->
+    <style>
+		body{
+			background-image:url('{% static 'images/bg_update_user.jpg' %}');
+		}
+	</style>
+</head>
+<body>
+	{% csrf_token %}
+<section class="w3l-form-36">
+	<div class="form-36-mian section-gap"> <!--最大的背景圖片-->
+		<div class="wrapper"> <!--整個白色欄位往右邊移動-->
+			<div class="form-inner-cont"> <!--白底部份把正個區塊框起來-->
+				<h3>會員更新</h3>
+				<form method="POST" class="signin-form">
+					<!-- -------帳號、密碼、確認密碼、姓名、性別、手機號碼、電子信箱、生日、地址----------- -->
+
+					<div class="form-input">
+						<span class="fa fa-user-o" aria-hidden="true"></span>
+						<input type="text" id="username" name="username" placeholder="請輸入您的姓名" value="{{ member.username }}" required />
+					</div>
+					
+					<div class="form-input">
+						<span class="fa fa-key" aria-hidden="true"></span>
+						<div>
+							<input type="password" id="password" name="password" placeholder="請最少輸入8-12位英文與數字" required
+							pattern="^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$" minlength="8" maxlength="12" 
+							title="請最少輸入8-12位英文與數字" style="width: 250px;" value="{{ member.password }}" />
+							<span class="validity" style="line-height: 45px;"></span>
+						</div>
+						
+					</div>
+					
+					<div class="form-input">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span> 
+						<div>
+							<input type="email" id="email" name="email" placeholder="請輸入您的信箱" required 
+							pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" style="width: 250px;" 
+                            value="{{ member.email }}" />
+							<span class="validity" style="line-height: 45px;"></span>
+						</div>
+						
+					</div>
+					
+					<!-- <div class="form-group mb-4"> -->
+					<div class="form-input" style="height: 45px;">
+						<span class="fa fa-venus-mars" aria-hidden="false"></span>
+						<select name="gender" style="width: 50px; height: 25px; text-align: center;">           		<!-- 下拉式選單select 選單名稱name 選取多個multiple -->
+							<option value="M" {% if member.gender == 'M' %}selected{% endif %}>男</option>      		<!-- 清單選項option 選項值value -->
+							<option value="F" {% if member.gender == 'F' %}selected{% endif %} selected>女</option>	<!-- 清單選項option 選項值value 預設選項selected -->
+							<option value="O" {% if member.gender == 'O' %}selected{% endif %}>其他</option>      	<!-- 清單選項option 選項值value -->
+						</select>                                   <!-- 結束下拉式選單select -->
+					</div>
+
+					<div class="form-input" style="height: 45px;">
+						<div>
+							<span class="fa fa-phone" aria-hidden="true"></span>
+						</div>
+						<div>
+							<input type="tel" id="phone" name="phone" placeholder="手機號碼 09xxxxxxxx" required
+							pattern="[0-9]{4}[0-9]{3}[0-9]{3}" value="{{ member.phone }}" />
+							<span class="validity"></span>
+							
+						</div>
+					</div>
+
+					<div class="d-flex justify-content-center mb-4 bg-danger">
+						{{ message }}
+					</div>
+
+					<div class="form-input" style="height: 45px;">
+						<span class="fa fa-calendar" aria-hidden="true"></span>
+						<div>
+							<input type="date" id="birthday" name="birthday"  value="{{ member.birthday }}" required style="width: 100px;" />
+						</div>
+					</div>
+
+					<div class="form-input">
+						<span class="fa fa-home" aria-hidden="true"></span>
+						<input type="text" id="address" name="address" placeholder=" {{ member.address }} " required />
+					</div>
+									
+					
+					<div class="login-remember d-flex">
+						<div>
+							<input type="submit" id="submit-button" class="btn theme-button" value="更新會員">
+							<a href="/home/"><input type="button" value="返回首頁" class="btn theme-button"></a>
+						</div>
+						
+					</div>
+				</form>
+		</div>
+	</div>
+</section>
+</body>
+
+</html>

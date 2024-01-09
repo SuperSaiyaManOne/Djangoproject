@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-tw">
+<head>
+	{% load static %}
+	<title>創建你的帳戶</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css" media="all"><!-- Style-CSS -->
+	<link rel="stylesheet" href="{% static 'css/font-awesome.css' %}"><!-- font-awesome-icons -->
+	<style>
+		input:invalid + span::after {
+			position: absolute;
+			content: "✖";
+			padding-left: 5px;
+			color: #8b0000;
+	  	}
+
+		input:valid + span::after {
+			position: absolute;
+			content: "✓";
+			padding-left: 5px;
+			color: #009000;
+		}
+	</style>
+	
+</head>
+
+<body>
+<section class="w3l-form-36">
+	<div class="form-36-mian section-gap"> <!--最大的背景圖片-->
+		<div class="wrapper"> <!--整個白色欄位往右邊移動-->
+			<div class="form-inner-cont"> <!--白底部份把正個區塊框起來-->
+				<h3>創建你的帳戶</h3>
+				<form action="/adduser_1/" method="POST" class="signin-form">
+					<!-- -------帳號、密碼、確認密碼、姓名、性別、手機號碼、電子信箱、生日、地址----------- -->
+
+					<div class="form-input">
+						<span class="fa fa-user-o" aria-hidden="true"></span>
+						<input type="text" id="username" name="username" placeholder="請輸入您的姓名" required />
+					</div>
+					
+					<div class="form-input">
+						<span class="fa fa-key" aria-hidden="true"></span>
+						<div>
+							<input type="password" id="password" name="password" placeholder="請最少輸入8-12位英文與數字" required
+							pattern="^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$" minlength="8" maxlength="12" 
+							title="請最少輸入8-12位英文與數字" style="width: 250px;" />
+							<span class="validity" style="line-height: 45px;"></span>
+						</div>
+						
+					</div>
+					
+					<div class="form-input">
+						<span class="fa fa-key" aria-hidden="true"></span>
+						<div>
+							<input type="password" id="repassword" name="repassword" placeholder="請重複輸入密碼" required 
+							style="width: 250px;" />
+							<!-- <span class="validity" style="line-height: 45px;"></span> -->
+						</div> 
+						
+					</div>
+					
+					<div class="form-input">
+						<span class="fa fa-envelope-o" aria-hidden="true"></span> 
+						<div>
+							<input type="email" id="email" name="email" placeholder="請輸入您的信箱" required 
+							pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$" style="width: 250px;" />
+							<span class="validity" style="line-height: 45px;"></span>
+						</div>
+						
+					</div>
+					
+					<!-- <div class="form-group mb-4"> -->
+					<div class="form-input" style="height: 45px;">
+						<span class="fa fa-venus-mars" aria-hidden="false"></span>
+						<select name="gender" style="width: 50px; height: 25px; text-align: center;">           		<!-- 下拉式選單select 選單名稱name 選取多個multiple -->
+							<option value="M">男</option>      		<!-- 清單選項option 選項值value -->
+							<option value="F" selected>女</option>	<!-- 清單選項option 選項值value 預設選項selected -->
+							<option value="O">其他</option>      	<!-- 清單選項option 選項值value -->
+						</select>                                   <!-- 結束下拉式選單select -->
+						
+						<!-- <label for="gender">性別</label>
+						<input type="checkbox" id="gender" name="gender" value="M" checked>男
+						<input type="checkbox" id="gender" name="gender" value="F">女
+						<input type="checkbox" id="gender" name="gender" value="O">其他 -->
+					</div>
+
+					<div class="form-input" style="height: 45px;">
+						<div>
+							<span class="fa fa-phone" aria-hidden="true"></span>
+						</div>
+						<div>
+							<input type="tel" id="phone" name="phone" placeholder="手機號碼 09xxxxxxxx" required
+							pattern="[0-9]{4}[0-9]{3}[0-9]{3}" />
+							<span class="validity"></span>
+							
+						</div>
+					</div>
+
+					<div class="d-flex justify-content-center mb-4 bg-danger">
+						{{ message }}
+					</div>
+
+					<div class="form-input" style="height: 45px;">
+						<span class="fa fa-calendar" aria-hidden="true"></span>
+						<div>
+							<input type="date" id="birthday" name="birthday" required style="width: 100px;" />
+							<!-- <span class="validity"></span> -->
+						</div>
+					</div>
+
+					<div class="form-input">
+						<span class="fa fa-home" aria-hidden="true"></span>
+						<input type="text" id="address" name="address" placeholder="請輸入您的地址" required />
+					</div>
+									
+					<!-- ----------------登入按鈕、記住我勾選 -->
+					<div class="login-remember d-flex">
+						<!-- "記住我"的功能 -->
+						<!-- <label class="check-remaind">
+							<input type="checkbox">
+							<span class="checkmark"></span>
+							<p class="remember">記住我</p>
+						</label> -->
+						<div>
+							<input type="submit" id="submit-button" class="btn theme-button" value="註冊">
+							<input type="reset" id="reset-button" class="btn theme-button" value="清除">
+							<a href="/front_page_1/"><input type="button" value="返回首頁" class="btn theme-button"></a>
+						</div>
+						
+					</div>
+				</form>
+
+				<!-- facebook、google登入----------- -->
+				<!-- <div class="social-icons">
+					<p class="continue"><span>早點見</span></p>
+					<div class="social-login">
+					<a href="#facebook">
+						<div class="facebook">
+							<span class="fa fa-facebook" aria-hidden="true" target="_blank"></span>
+						</div>
+					</a>
+					<a href="#google">
+						<div class="google">
+							<span class="fa fa-google" aria-hidden="true"></span>
+						</div>
+					</a>
+				</div> -->
+				<!-- --------------------------- -->
+			</div>
+				<p class="signup" style="color: aliceblue;">已經是會員了？ <a href="/login/" class="text-body fw-bold">登入</a></p>
+			</div>
+		</div>
+	</div>
+</section>
+</body>
+
+</html>

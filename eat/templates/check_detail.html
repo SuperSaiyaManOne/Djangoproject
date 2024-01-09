@@ -1,0 +1,21 @@
+{% extends "check_base.html" %}
+{% load static %}
+
+{% block content %}
+  <div id="maindiv">
+	<table width="100%" border="0" align="center" cellpadding="4" cellspacing="0">
+	  <tr valign="top">
+		<td width="200" align="center"><p><img src="/static/cart/images/{{product.pimages}}" />
+		  <p class="sprice">特價<br />${{product.price}}</p></td>
+		<td><p class="subject">產品名稱</p>
+		  <p class="desc">{{product.name}} </p>
+		  <p class="subject">產品介紹</p>
+		  <p class="desc">{{product.description}}</p></td>
+	  </tr>
+	</table>
+	<p align="center"> 
+	  <a href="/check_addtocart/add/{{product.id}}/"><img src="{% static "cart/images/icon_cart.png" %}" width="102" height="27" border="0" /></a>　
+	  <a href="javascript:;" onclick="window.history.back();"><img src="{% static "cart/images/icon_back.png" %}" width="102" height="27" border="0" /></a>
+	</p>	  
+  </div>
+{% endblock %}

@@ -1,0 +1,114 @@
+<!DOCTYPE html> <!--宣告告訴瀏覽器正在使用的是 HTML5-->
+<html lang="zh-tw">  <!--定義了文件的語言屬性為繁體中文-->
+<head> <!--HTML 文件的頭部元素，用於包含與網頁有關的元訊息-->
+	{% load static %}
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<title>早點見-早餐訂購系統</title>
+	<meta name="keywords" content=""/> <!--定義網頁的關鍵字和描述，有助於搜尋引擎優化-->
+	<meta name="description" content=""/> <!--定義網頁的關鍵字和描述，有助於搜尋引擎優化-->
+	<link rel="stylesheet" href="{% static 'default.css' %}">
+</head>
+
+<style>
+	.logo-container {
+		display: flex;
+		align-items: center;
+	}
+
+	.logo-text { /*設定左側與logo圖片的間距*/
+		margin-left: 10px;
+	}
+	#splash1 {
+		width: 770px;
+		height: 432px;
+		margin: 0 auto;
+	}
+</style>
+
+<body>
+	{% load static %}
+	<div id="header">
+		<div id="logo">
+
+			<a class="navbar-brand">
+			  <div class="logo-container">
+				<a href="/login/"><img src="{% static 'images/foodlogo.jpg' %}"></a>
+				<div class="logo-text">
+				  <h1>早點見</h1>
+				  <h2 style="font-size: small;">早餐購物系統</h2>
+				</div>
+			  </div>
+			</a>
+
+		</div>
+		<div>
+			<h5 style="text-align: right; color: blue;">您尚未登入喔~<a href="/login/">登入</a></h5>
+		</div>
+		
+		<div id="menu">
+
+			<ul>
+				
+				<li><a href="javascript:alert('系統更新中，敬請期待');">關於我們</a></li>
+				<li><a href="/adduser_1/">加入會員</a></li>
+				<li><a href="/front_page/">各式早餐</a></li>
+				<li><a href="/food_map_no/">美食實圖</a></li>
+				<li><a href="javascript:alert('等待廠商昭告，歡迎廠商聯繫');">徵才資訊</a></li>
+				
+			</ul>
+			
+		</div>
+		
+	</div>
+
+	<div id="splash1">
+		<img src="/static/images/img3.png" alt="早點見" usemap="#foodmap">   <!-- 崁入圖片img 圖片位置src 替代文字alt 影像地圖usemap -->
+		<map name="foodmap">                                          <!-- 網頁圖片map 影像地圖名稱name -->
+			<area shape="circle" coords="127, 110, 45" href="/login/" alt="登入會員"><!-- 設定圖片上熱點區域area 對應區塊形狀shape 圓形circle -->
+			<area shape="rect" coords="54, 328, 244, 376" href="/food_map_no/" alt="美食實圖"><!-- 對應區塊形狀shape 矩形rect 多邊形poly 座標位置coords -->
+		</map>                                                          <!-- 結束網頁圖片 -->
+	</div>
+	
+	<div id="page">
+		<div id="content">
+
+			<h1>歡迎來到 早點見-早餐訂購系統!</h1>
+
+			<blockquote>
+				<p><strong>&#8220;因應疫情</strong> 爆發後<a href="https://www.managertoday.com.tw/articles/view/67114">網路訂購越來越多人使用</a>，因此開發此訂購系統，本系統分早餐及好市多代購系統，
+					並且含有會員服務系統，訂購商品前需要登入會員，否則無法訂購。</p>
+			</blockquote>
+			<p>
+				走進早餐店，聽到店員大聲說：「麻煩掃桌上 QR Code 點餐哦！」貼在桌邊長寬 4 公分的 QR Code 取代長方形的菜單，拿起手機一掃，螢幕上跳出簡潔的菜單畫面，吐司可以選切邊、不烤；飲料可以指定去冰、微糖，完成後跳出帳單總額、櫃臺邊的出單機輸出小白單，點餐完成！
+				這套系統叫做「早點見」，目前約有 3000 家早餐店業者導入，占全台灣早餐店的 1/6。也有早餐店業者規定來店消費的顧客搭配系統使用電子支付，藉此同時省下點餐和結帳的人力成本，不只提高小吃店的利潤，還能避免點錯、記錯品項和甜度冰度等人為疏失，以及人員排班後沒出現的窘境，讓小吃店業者少操一點心。
+				來源：https://www.managertoday.com.tw/articles/view/67114?utm_source=copyshare ©經理人
+			</p>
+			<ol>
+				<li><a href="#">傳統早餐店無痛數位轉型</a></li>
+				<li><a href="#">麥味登成功轉型案例</a></li>
+				<li><a href="#">Q Burger深刻了解APP的功效，如今擁有逾60萬名會員</a></li>
+				<li><a href="#">麥味登大動作開了全新店型：to-go 外賣專門店，設立在捷運站出口處</a></li>
+				<li><a href="#">早餐店新革命打造OMO全通路消費佈局</a></li>
+			</ol>
+		</div>
+		<div id="sidebar">
+			<h2>超重要的大報報</h2>
+			<ul>
+				<li>
+					<h3>2023.12.14 - 獲獎衛飽局早餐接力競賽活動傑出競賽獎第一名 </h3>
+					<a href="#">透過早餐接力競賽活動來進行校園宣導吃早餐的好處及重要性&#8230;</a></li>
+				<li>
+					<h3>2023.10.19 - 獲得素食早餐料理大賽創意組冠軍 </h3>
+					<a href="#">素食也能有爆炸性的視覺感，我們做出的料理你捨不得吃！&#8230;</a></li>
+				<li>
+					<h3>2022.8.8 - 入圍晨運客製早餐大賞 </h3>
+					<a href="#">晨運前最需要的，是不會太飽，又能有足夠的營養補充。總是煩惱，晨運餐的卡路里到底要怎麼抓?來早點見就對了！&#8230;</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="footer">
+		<p id="legal">Copyright &copy; 2007 BreakFast. All Rights Reserved. Designed by <a href="http://www.freecsstemplates.org/">Free CSS Templates</a>.</p>
+		<p id="links"><a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a></p>
+	</div>
+</body>
+</html>

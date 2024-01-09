@@ -1,0 +1,22 @@
+{% extends "check_base.html" %}
+{% load static %}
+
+{% block content %}
+  <div id="maindiv">
+    {% for product in productall %}
+      <div class="block_product pro_photo">
+        <div class="pro_photo">
+          <a href="/check_detail/{{ product.id }}"><img src="/static/cart/images/{{ product.pimages }}" alt="產品詳細資料" width="135" height="135" border="0" /></a>
+          <div class="pro_name"><a href="/detail/{{ product.id }}">{{ product.name }}</a></div>
+          <div class="pro_price">
+            <p>{{ product.address }}</p>
+            <p>{{ product.phone }}</p>
+          </div>
+          <div class="pro_btn">
+            <a href="/check_index_menu/{{product.id}}/"><img src="{% static "cart/images/icon_menu.png" %}" height="27" border="0" /></a>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock %}

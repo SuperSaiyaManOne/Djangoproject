@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>抓取菜單資料庫資料</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<style>
+    body{
+        background-image: url(/static/across_01.jpg);
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: Cover ;                        {% comment %} 無論如何，都會將畫面居中撐滿 {% endcomment %}
+        background-size: Contain;                       {% comment %} 依照原來的比例，等比的縮放到指定的元素的尺寸中 {% endcomment %}
+        background-size: 100% 99% ;                     {% comment %} 寬度和高度都強制100% 會有變形的情況 {% endcomment %}
+        background-color: rgba(0, 0, 0, .6);            {% comment %} 透明度 0.6 的黑色半透明遮罩 {% endcomment %}
+        background-blend-mode: multiply;                {% comment %} 設置背景混和模式為相乘模式 {% endcomment %}
+    }
+    h1{
+        color: rgb(255, 255, 255);
+        text-align: center;
+        font-size: 48px;
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    p{
+        text-align:center;
+        padding: 20px;
+    }
+    
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ dict_data.cStore_Name }}結帳系統 </h1>
+    
+    <div class="container">
+        <form action="/menu1/{{ dict_data.cStore_Name }}/" method="POST">
+            
+            <div class="container">
+                <div class="row">
+                    <div class="col-6" style="width: 645px; height: 350px; border: solid 1px #ff0000;">
+                        <div class="form-group" style="font-size: 20px; color: #ffffff;">
+                            <label for="username">訂購人資訊如下：</label>
+                        </div>
+                        <div style="height: 290px; overflow: auto;">
+                            <table class="table table-bordered" style="text-align: center; font-size: 20px; color: #0095ff;">
+                                <thead>
+                                    <tr>
+                                        <th>品名</th>
+                                        <th>單價</th>
+                                        <th>數量</th>
+                                        <th>小計</th>
+                                    </tr>
+                                </thead>
+                                <tfoot>
+                                    <tr>
+                                        <td>總計</td>
+                                        <td colspan="3" style="text-align: center;">120元</td>
+                                    </tr>
+                                </tfoot>
+                                <tbody>
+                                    <tr><b>
+                                    
+                                        <td>粉漿蛋餅</td>
+                                        <td>60元</td>
+                                        <td>2份</td>
+                                        <td>120元</td>
+                                    </b></tr>
+                                </tbody>
+                                
+                                
+                            </table>
+                        </div>
+                        
+                    </div>
+                    <div class="col-6" style="width: 645px; height: 350px;font-size: 20px; color: #ff00ff; border: solid 1px #ff0000;">
+                        <div class="form-group">
+                            <label for="username">訂購人資訊如下：</label>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">姓名</label>
+                            <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="請輸入您的姓名" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">電子信箱</label>
+                            <input type="email" class="form-control form-control-lg" id="email" name="email" placeholder="請輸入您的信箱" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="username">地址</label>
+                            <input type="text" class="form-control form-control-lg" id="name" name="name" placeholder="請輸入您的地址" required>
+                        </div>
+
+                        <div class="form-group mb-4">
+                            <label for="phone">手機號碼</label>
+                            <input type="text" class="form-control form-control-lg" id="phone" name="phone" placeholder="請輸入您的手機號碼" required>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+            
+            <p style="text-align: center;">
+                <a href="/checkout/"><button type="submit" class="btn btn-success btu-sm">確認訂單</button></a>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <button type="reset" class="btn btn-warning">清除訂單</button>
+                <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                <a href="/front_page/"><button type="button" class="btn btn-info">返回首頁</button></a>
+            </p>
+            
+
+        </form>
+    </div>
+    
+{% endblock %}

@@ -1,0 +1,178 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>訂餐</title>
+{% load static %}
+<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+<style>
+    body{
+        background-image: url(/static/images/home_menu.jpg);
+        background-size: Cover ;                        {% comment %} 無論如何，都會將畫面居中撐滿 {% endcomment %}
+        background-size: Contain;                       {% comment %} 依照原來的比例，等比的縮放到指定的元素的尺寸中 {% endcomment %}
+        background-size: 100% auto;                     {% comment %} 寬度和高度都強制100% 會有變形的情況 {% endcomment %}
+        background-color: rgba(0, 0, 0, .4);            {% comment %} 透明度 0.6 的黑色半透明遮罩 {% endcomment %}
+        background-blend-mode: multiply;                {% comment %} 設置背景混和模式為相乘模式 {% endcomment %}
+    }
+    h1{
+        color: deepskyblue;
+        text-align: center;
+        font-size: 48px;
+        padding-top: 20px;
+        padding-bottom: 10px;
+    }
+    .row{
+        padding-top: 35px;
+        text-align: center;
+    }
+    p{
+        text-align:left;
+        padding-top: 10px;
+        padding-left: 30px;
+        padding-bottom: 10px;
+    }
+    .td{
+        font-size: 18px;
+        font-weight: bolder;
+        font-family:DFKai-sb;
+        text-align:justify;
+        text-justify:distribute-all-lines;
+        text-align-last:justify;
+    }
+    .td{
+        float:center;
+    }
+    #number {
+        width: 3em;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+    <h1>{{ dict_data.cStore_Name }}訂購系統 </h1>
+    {% for data in resultList %}
+    <form action="/home_menu/{{ data.id }}/" method="POST">
+        {% endfor %}
+        <div class="container">
+            <div class="row">
+                <div class="col-6">
+                    <div class="container" style="width: 500px; height: 46px;">
+                        <table>
+                            <thead style="color: aqua;">
+                                <tr style="font-size: 28px;">
+                                    <th colspan="2" style="width: 255px;">品名</th>
+                                    <th colspan="2" style="width: 80px;">單價</th>
+                                    <th style="width: 100px;">數量</th>
+                                </tr>
+                            </thead>
+                        </table>
+                    </div>
+                    {% if status %}
+                    <div class="container" style="width: 500px; height: 344px; overflow-y: scroll;">
+                        <table class="table table-striped table-bordered table-hover">
+                            {% for data in resultList %}
+                            <tr style="color: #ffffff;">
+                                {% if data.cSort_project == "中式" and data.cStore_Name == "無名早午餐" %}
+                                <td class="td" style="width: 300px;">{{ data.cProduct_name }}</td>
+                                <td class="td" style="width: 100px;">{{ data.cUnit_price }}</td>
+                                <td class="td" style="width: 100px;"><input type="number" name="number" id="number"></td>
+                                {% elif data.cSort_project == "中式" and data.cStore_Name == "永和傳統豆漿" %}
+                                <td class="td" style="width: 300px;">{{ data.cProduct_name }}</td>
+                                <td class="td" style="width: 100px;">{{ data.cUnit_price }}</td>
+                                <td class="td" style="width: 100px;"><input type="number" name="number" id="number"></td>
+                                {% endif %}
+            
+                                {% if data.cSort_project == "西式" and data.cStore_Name == "斜坡粉漿蛋餅" %}
+                                <td class="td" style="width: 300px;">{{ data.cProduct_name }}</td>
+                                <td class="td" style="width: 100px;">{{ data.cUnit_price }}</td>
+                                <td class="td" style="width: 100px;"><input type="number" name="number" id="number"></td>
+                                {% elif data.cSort_project == "西式" and data.cStore_Name == "老八早點鋪" %}
+                                <td class="td" style="width: 300px;">{{ data.cProduct_name }}</td>
+                                <td class="td" style="width: 100px;">{{ data.cUnit_price }}</td>
+                                <td class="td" style="width: 100px;"><input type="number" name="number" id="number"></td>
+                                {% elif data.cSort_project == "西式" and data.cStore_Name == "天天有氧" %}
+                                <td class="td" style="width: 300px;">{{ data.cProduct_name }}</td>
+                                <td class="td" style="width: 100px;">{{ data.cUnit_price }}</td>
+                                <td class="td" style="width: 100px;"><input type="number" name="number" id="number"></td>
+                                {% endif %}
+            
+                                {% if data.cSort_project == "特色" and data.cStore_Name == "黃媽媽早點客家菜包" %}
+                                <td class="td" style="width: 300px;">{{ data.cProduct_name }}</td>
+                                <td class="td" style="width: 100px;">{{ data.cUnit_price }}</td>
+                                <td class="td" style="width: 100px;"><input type="number" name="number" id="number"></td>
+                                {% endif %}
+                                
+                            </tr>
+                            {% endfor %}
+                        </table>
+                        
+                    </div>
+                    <div style="height: 30px;"></div>
+                    {% else %}
+                    <h1>無資料</h1>
+                    {% endif %}
+                </div>
+
+                <div class="col-6">
+                    <div class="container" style="width: 550px; height: 350px; overflow: auto;">
+                        <table class="table" style="color: rgb(0, 200, 255);">
+                            <thead>
+                                <tr style="font-size: 20px;">
+                                    <th>取&nbsp;&nbsp;消</th>
+                                    <th>商&nbsp;&nbsp;品</th>
+                                    <th>單&nbsp;&nbsp;價</th>
+                                    <th>數&nbsp;&nbsp;量</th>
+                                    <th>金&nbsp;&nbsp;額</th>
+                                    <th>備&nbsp;&nbsp;註</th>
+                                </tr>
+                            </thead>
+
+                            {% comment %} <tfoot>
+                                <tr id="td">
+                                    <td colspan="6">
+                                        <a href="/checkout/"><button type="submit" class="btn btn-outline-info">確認並填寫訂購資訊</button></a>
+                                        <span>&nbsp;&nbsp;&nbsp;</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span>
+                                        <span>&nbsp;&nbsp;&nbsp;</span>
+                                        <a href="/checkout/"><button type="reset" class="btn btn-outline-info">刪除整筆資料</button></a>
+                                        
+                                    </td>
+                                </tr>
+                            </tfoot> {% endcomment %}
+
+                            <tbody>
+                                <tr>
+                                    {% comment %} <th colspan="6">還未登入無法訂購，請先 <a href="/login/"> 登入</a>或 <a href="/adduser/"> 加入會員</a></th> {% endcomment %}
+                                </tr>
+                            </tbody>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container" style="width: 800px; height: 80px;">
+                <p>
+                    <a href="javascript:alert('購物車有問題，等待解決狀況');">
+                        <button type="button" class="btn btn-outline-info" style="width: 200px; font-size: 28px;">
+                            送出
+                            <font size="1">(右側顯示)</font>
+                        </button>
+                    </a>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <button type="reset" class="btn btn-outline-info" style="width: 200px; font-size: 28px;">
+                        清除資料
+                    </button>
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <a href="/home/">
+                        <button type="button" class="btn btn-outline-info" style="width: 200px; font-size: 28px;">返回首頁</button>
+                    </a>
+                </p>
+            </div>
+
+        </div>
+
+        
+
+    </form>
+    
+{% endblock %}

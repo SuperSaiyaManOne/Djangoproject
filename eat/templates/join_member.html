@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+
+{% block title %}
+<title>加入會員</title>
+{% endblock %}
+
+{% block content %}
+
+    <div class="col-xl-6">
+        <div id="video-container">
+            
+        </div>
+<div class="card" style="border-radius: 15px;">
+    <div class="card-body p-5">
+        <h2 class="text-center mb-5 text-uppercase">加入會員</h2>
+        <form action="/join_member/" method="POST">
+            {% csrf_token %}
+            <div class="form-group mb-4">
+                <label for="cAcc">帳號</label>
+                <input type="text" class="form-control form-control-lg" id="cAcc" name="cAcc" placeholder="請輸入使用者帳號，長度:6-12個字元" required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="cPwd">密碼</label>
+                <input type="password" class="form-control form-control-lg" id="cPwd" name="cPwd" placeholder="請最少輸入8-12位英文與數字" required
+                pattern="^([a-zA-Z]+\d+|\d+[a-zA-Z]+)[a-zA-Z0-9]*$" minlength="8" maxlength="12" title="請最少輸入8-12位英文與數字">
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="rePwd">確認密碼</label>
+                <input type="password" class="form-control form-control-lg" id="rePwd" name="rePwd" placeholder="請重複輸入密碼" required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="cName">姓名</label>
+                <input type="text" class="form-control form-control-lg" id="cName" name="cName" placeholder="請輸入您的姓名" required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="cSex">性別</label>
+                <input type="radio" id="cSex" name="cSex" value="M" checked>男
+                <input type="radio" id="cSex" name="cSex" value="F">女
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="cPhone">手機號碼</label>
+                <input type="text" class="form-control form-control-lg" id="cPhone" name="cPhone" placeholder="請輸入您的手機號碼" required>
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="cEmail">電子信箱</label>
+                <input type="email" class="form-control form-control-lg" id="cEmail" name="cEmail" placeholder="請輸入您的信箱" required>
+            </div>
+
+            <div class="d-flex justify-content-center mb-4 bg-danger">
+                {{ message }}
+            </div>
+
+            <div class="form-group mb-4">
+                <label for="cBirthday">生日</label>
+                <input type="date" class="form-control form-control-lg" id="cBirthday" name="cBirthday" required>
+            </div>
+            <div class="form-group mb-4">
+                <label for="cAddr">地址</label>
+                <input type="text" class="form-control form-control-lg" id="cAddr" name="cAddr" required>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <input type="submit" class="btn btn-primary btn-block btn-lg text-center" id="submit-button" value="註冊">
+            </div>
+            <p class="text-center text-muted mt-5 mb-0">已有帳號了？<a href="/member_login/" class="text-body fw-bold">登入</a></p>
+
+        </form>
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

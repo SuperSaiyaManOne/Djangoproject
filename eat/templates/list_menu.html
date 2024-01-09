@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}
+<title>抓取菜單資料庫資料(各家菜單)</title>
+{% endblock %}
+
+{% block content %}
+    <h1> {{ errormessage }} </h1>
+    {% for data in resultList %}
+    <h2>顯示 student 資料表的資料</h2>
+    <p>編號：{{ data.id }}</p>
+    <p>店名：{{ data.cStore_Name }}
+        <span>品名：{{ data.cProduct_name }}</span>
+        <span>金額：{{ data.cUnit_price }}</span>
+    </p>
+    {% endfor %}
+{% endblock %}

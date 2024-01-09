@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <style>
+    body {
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center;
+        background-size: Cover ;                        {% comment %} 無論如何，都會將畫面居中撐滿 {% endcomment %}
+        background-size: Contain;                       {% comment %} 依照原來的比例，等比的縮放到指定的元素的尺寸中 {% endcomment %}
+        background-size: 100% 100% ;                    {% comment %} 寬度和高度都強制100% 會有變形的情況 {% endcomment %}
+        background-size: 100% auto ;                    {% comment %} 寬度強制100% 高度維持等比例不變形 {% endcomment %}
+        background-color: rgba(0, 0, 0, .5);            {% comment %} 透明度 0.6 的黑色半透明遮罩 {% endcomment %}
+        background-blend-mode: multiply;                {% comment %} 設置背景混和模式為相乘模式 {% endcomment %}
+        margin-top: 50px;
+        }
+    </style>
+    {% block title %}{% endblock %}
+</head>
+<body>
+    {% block content %}{% endblock %}
+    {% comment %} <h3>已載入早餐購物車樣板</h3> {% endcomment %}
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+</body>
+</html>

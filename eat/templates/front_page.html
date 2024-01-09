@@ -1,0 +1,156 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% load static %}
+
+<title>早餐購物系統-首頁</title>
+
+<style>
+    body{
+        background-image: url(/static/images/bg.jpg);
+    }
+    button{
+        border-radius: 15px;
+    }
+</style>
+
+{% endblock %}
+
+
+{% block content %}
+{% load static %}
+
+<div class="container" style="padding-right: 5px;">
+    <div class="row">
+        <div class="col-7">
+            <h1 style="text-align: right;" class="text-white">早餐購物系統</h1>
+        </div>
+        <div class="col-5">
+            {% if user.is_authenticated %}
+            <h5 style="text-align: right;" class="text-white"><a href="/logout/">{{ user.username }}</a>歡迎光臨</h5>
+            {% else %}
+            <h5 style="text-align: right;" class="text-white">您尚未登入喔~<a href="/login/">登入</a></h5>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2" style="margin: 5px; padding: 5px;">
+            
+            <ul class="nav nav-pills flex-column" id="mytab">
+                <li class="nav-item" style="text-align: center; width: 160px; height: 60px; font-size: 24px; padding: 16px;">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#tab1">中式早餐</a>
+                </li>
+                <li class="nav-item" style="text-align: center; width: 160px; height: 60px; font-size: 24px; padding: 16px;">
+                    <a class="nav-link" data-bs-toggle="tab" href="#tab2">西式早餐</a>
+                </li>
+                <li class="nav-item" style="text-align: center; width: 160px; height: 60px; font-size: 24px; padding: 16px;">
+                    <a class="nav-link" data-bs-toggle="tab" href="#tab3">特色早餐</a>
+                </li>
+                <li class="nav-item" style="text-align: center; width: 160px; height: 60px; font-size: 24px; padding: 16px;">
+                    <a href="/front_page_1/">返回首頁</a>
+                </li>
+
+            </ul>
+            
+        </div>
+        
+        <div class="col-9 tab-content mt-2" id="myTabContent">
+
+            <div class="tab-pane fade show active" id="tab1">
+                <div align="center" class="table-responsive" style="white-space: nowrap; height: 200px; margin: 5px; padding: 5px;">
+                    {% if status %}
+                    <table  class="table table-sm table-striped table-hover" style="white-space: nowrap;">
+                        <thead class="table-light">
+                            <tr class="table-primary" style="text-align: center;">
+                                <th>店名</th>
+                                <th>地址</th>
+                                <th>電話</th>
+                                <th>營業時間</th>
+                            </tr>
+                        <tbody>
+                            {% for data in resultList %}
+                            <tr style="text-align: center;">
+                                {% if data.cSort_project == "中式" %}
+                                <th><a href="/menu/{{ data.id }}/">{{ data.cStore_Name }}</a></th><!-- 店家名稱 -->
+                                <th style="color: #ffffff;">{{ data.cStore_Phone }}</th><!-- 店家電話 -->
+                                <th style="color: #ffffff;">{{ data.cStore_Addr }}</th><!-- 店家地址 -->
+                                <th style="color: #ffffff;">{{ data.cBusiness_Hours }}</th><!-- 營業時間 -->
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="tab-pane fade show" id="tab2">
+                <div align="center" class="table-responsive" style="white-space: nowrap; height: 200px; margin: 5px; padding: 5px;">
+                    {% if status %}
+                    <table  class="table table-sm table-striped table-hover" style="white-space: nowrap;">
+                        <thead class="table-light">
+                            <tr class="table-primary" style="text-align: center;">
+                                <th>店名</th>
+                                <th>地址</th>
+                                <th>電話</th>
+                                <th>營業時間</th>
+                            </tr>
+                        <tbody>
+                            {% for data in resultList %}
+                            <tr style="text-align: center;">
+                                {% if data.cSort_project == "西式" %}
+                                <th><a href="/menu/{{ data.id }}/">{{ data.cStore_Name }}</a></th><!-- 店家名稱 -->
+                                <th style="color: #ffffff;">{{ data.cStore_Phone }}</th><!-- 店家電話 -->
+                                <th style="color: #ffffff;">{{ data.cStore_Addr }}</th><!-- 店家地址 -->
+                                <th style="color: #ffffff;">{{ data.cBusiness_Hours }}</th><!-- 營業時間 -->
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="tab-pane fade show" id="tab3">
+                <div align="center" class="table-responsive" style="white-space: nowrap; height: 200px; margin: 5px; padding: 5px;">
+                    {% if status %}
+                    <table  class="table table-sm table-striped table-hover" style="white-space: nowrap;">
+                        <thead class="table-light">
+                            <tr class="table-primary" style="text-align: center;">
+                                <th>店名</th>
+                                <th>地址</th>
+                                <th>電話</th>
+                                <th>營業時間</th>
+                            </tr>
+                        <tbody>
+                            {% for data in resultList %}
+                            <tr style="text-align: center;">
+                                {% if data.cSort_project == "特色" %}
+                                <th><a href="/menu/{{ data.id }}/">{{ data.cStore_Name }}</a></th><!-- 店家名稱 -->
+                                <th style="color: #ffffff;">{{ data.cStore_Phone }}</th><!-- 店家電話 -->
+                                <th style="color: #ffffff;">{{ data.cStore_Addr }}</th><!-- 店家地址 -->
+                                <th style="color: #ffffff;">{{ data.cBusiness_Hours }}</th><!-- 營業時間 -->
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% endif %}
+                </div>
+            </div>
+
+        </div>
+        
+
+        
+    </div>
+</div>
+
+
+
+
+{% endblock %}

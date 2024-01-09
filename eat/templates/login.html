@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{% load static %}
+<title>會員登入</title>
+<style>
+
+    body {
+        background-image: url(/static/images/login.jpg);
+    }
+
+</style>
+
+<script>
+    
+</script>
+
+{% endblock %}
+
+{% block content %}
+{% load static %}
+
+    <div class="col-xl-6 container text-primary">
+        <div>
+            <div class="card-body p-5">
+                <h2 class="text-center mb-5 text-uppercase" style="font-size: 48px;"><b>會員登入</b></h2>
+                <form action="." method="POST" name="form1">
+                    {% csrf_token %}
+                    <div class="form-group mb-4">
+                        <label for="username" style="font-size: 32px;"><b>帳號</b></label>
+                        <input type="text" class="form-control form-control-lg" id="username" name="username" style="width: 650px;" required>
+                    </div>
+
+                    <div class="form-group mb-4">
+                        <label for="password" style="font-size: 32px;"><b>密碼</b></label>
+                        <input type="password" class="form-control form-control-lg" id="cPwpasswordd" name="password" required>
+                    </div>
+
+                    <div class="d-flex justify-content-center mb-4 bg-danger">
+                        {{ message }}
+                    </div>
+
+                    <div class="d-flex justify-content-center">
+                        <input type="submit" class="btn btn-primary btn-block btn-lg text-center" id="submit-button" value="登入">
+                        &nbsp;&nbsp;&nbsp;
+                        <input type="reset" class="btn btn-primary btn-block btn-lg text-center" id="submit-button" value="清除">
+                        &nbsp;&nbsp;&nbsp;
+                        <a href="/front_page_1/">
+                            <button type="button" class="btn btn-primary btn-block btn-lg text-center">
+                                返回首頁
+                            </button>
+                        </a>
+                    </div>
+                    <p class="text-center mt-5 mb-0"><a href="/adduser_1/" class="fw-bold">註冊新帳號</a></p>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

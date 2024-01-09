@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <title>早餐訂購網</title>
+    {% load static %}
+    <link href="{% static "cart/css/style.css" %}" rel="stylesheet" type="text/css" />
+    {% block script %}{% endblock %}
+</head>
+<body>
+    <div id="warp">
+      <div id="content"> 
+        <div id="sidediv">
+          <div class="sidemenu">資訊中心</div>
+          <ul>
+            <li><a href="/check_cart/">檢視購物車</a></li>
+            <li><a href="/check_cartordercheck/">查詢訂單</a></li>
+            <li><a href="/check_index/">回到店家資訊</a></li>
+            <li><a href="/home/">回到首頁</a></li>
+          </ul>
+        </div>
+        {% block content %}{% endblock %}
+        <div style="clear:both"></div>
+      </div>
+    </div>
+</body>
+</html>
